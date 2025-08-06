@@ -31,15 +31,10 @@ public:
     void move_song(int from, int to);
     void reverse_playlist();
     void display();
-    Song* extract_song(int index);             // new
-    void add_song_to_front(Song* song);        // new
+    Song* extract_song(int index);
+    void add_song_to_front(Song* song);
     int size() const { return songCount; }
     void for_each(const std::function<void(Song*)>& fn) const;
-
-
-
-    
 };
-
 
 #endif

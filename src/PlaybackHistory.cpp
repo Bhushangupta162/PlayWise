@@ -5,12 +5,10 @@
 PlaybackHistory::PlaybackHistory(Playlist& pl) : playlist(pl) {}
 
 void PlaybackHistory::play_song(int index) {
-    // remove song from playlist and push to history
     Song* song = playlist.extract_song(index);
     if (!song) throw std::runtime_error("Invalid song index");
     history.push(song);
-
-    std::cout << "🎵 Playing: " << song->title << " by " << song->artist << "\n";
+    std::cout << " Playing: " << song->title << " by " << song->artist << "\n";
 }
 
 void PlaybackHistory::undo_last_play() {
@@ -20,7 +18,7 @@ void PlaybackHistory::undo_last_play() {
     }
     Song* song = history.top(); history.pop();
     playlist.add_song_to_front(song);
-    std::cout << "⏪ Undo: " << song->title << " re-added to playlist.\n";
+    std::cout << " Undo: " << song->title << " re-added to playlist.\n";
 }
 
 void PlaybackHistory::display_history() const {
@@ -31,3 +29,4 @@ void PlaybackHistory::display_history() const {
         std::cout << "- " << s->title << " by " << s->artist << "\n";
     }
 }
+//

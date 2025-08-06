@@ -2,7 +2,6 @@
 #include <iostream>
 #include <functional>
 
-
 RatingTree::RatingTree() : root(nullptr) {}
 
 RatingTree::~RatingTree() {
@@ -13,7 +12,7 @@ void RatingTree::free_tree(Node* node) {
     if (!node) return;
     free_tree(node->left);
     free_tree(node->right);
-    for (Song* s : node->songs) delete s;
+    for (auto* song : node->songs) delete song;
     delete node;
 }
 
@@ -38,7 +37,7 @@ void RatingTree::insert_song(Song* song, int rating) {
     root = insert(root, song, rating);
 }
 
-void RatingTree::search_by_rating(Node* node, int rating, std::vector<Song*>& result) const{
+void RatingTree::search_by_rating(Node* node, int rating, std::vector<Song*>& result) const {
     if (!node) return;
 
     if (rating < node->rating)
@@ -49,7 +48,7 @@ void RatingTree::search_by_rating(Node* node, int rating, std::vector<Song*>& re
         result = node->songs;
 }
 
-std::vector<Song*> RatingTree::search_by_rating(int rating) const{
+std::vector<Song*> RatingTree::search_by_rating(int rating) const {
     std::vector<Song*> result;
     search_by_rating(root, rating, result);
     return result;
@@ -61,11 +60,11 @@ RatingTree::Node* RatingTree::delete_song(Node* node, const std::string& song_id
     node->left = delete_song(node->left, song_id);
     node->right = delete_song(node->right, song_id);
 
-    auto& songs = node->songs;
-    for (auto it = songs.begin(); it != songs.end(); ++it) {
+    auto& list = node->songs;
+    for (auto it = list.begin(); it != list.end(); ++it) {
         if ((*it)->id == song_id) {
             delete *it;
-            songs.erase(it);
+            list.erase(it);
             break;
         }
     }
@@ -81,7 +80,7 @@ void RatingTree::display() {
         if (!node) return;
         inorder(node->left);
         std::cout << "Rating " << node->rating << ":\n";
-        for (auto s : node->songs)
+        for (auto* s : node->songs)
             std::cout << "- " << s->title << " by " << s->artist << "\n";
         inorder(node->right);
     };

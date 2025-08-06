@@ -27,7 +27,7 @@ Song* SongIndex::find_by_title(const std::string& title) const {
 }
 
 void SongIndex::display_index() {
-    std::cout << "📁 Current Song Index:\n";
+    std::cout << " Current Song Index:\n";
     for (auto it = idMap.begin(); it != idMap.end(); ++it) {
         std::string id = it->first;
         Song* song = it->second;

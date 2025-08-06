@@ -14,7 +14,7 @@ bool ArtistBlocker::is_blocked(const std::string& artist) const {
 }
 
 void ArtistBlocker::display_blocklist() const {
-    std::cout << "⛔ Blocked Artists:\n";
+    std::cout << " Blocked Artists:\n";
     for (const auto& name : blocklist) {
         std::cout << "- " << name << "\n";
     }

@@ -20,7 +20,7 @@ void DurationAnalyzer::analyze(const Playlist& playlist) {
         }
     });
 
-    std::cout << "\n⏱️ Playlist Duration Summary:\n";
+    std::cout << "\n Playlist Duration Summary:\n";
     std::cout << "- Total Duration: " << total << " seconds\n";
     std::cout << "- Longest: " << maxSong << " (" << maxDur << "s)\n";
     std::cout << "- Shortest: " << minSong << " (" << minDur << "s)\n";
